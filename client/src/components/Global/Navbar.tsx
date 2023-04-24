@@ -3,7 +3,11 @@ import Link from "next/link";
 import React from "react";
 import { images } from "./Image";
 
-const Navbar = ({ name, text }) => {
+interface NavbarProps {
+  name: string;
+  text: string;
+}
+const Navbar = ({ name, text }: NavbarProps) => {
   return (
     <>
       <nav className="navbar navbar-expand-lg fixed-top">
