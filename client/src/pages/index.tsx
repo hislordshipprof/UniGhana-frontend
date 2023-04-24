@@ -1,16 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 
 import { images } from "@/components/Global/Image";
 import Link from "next/link";
 import Navbar from "@/components/Global/Navbar";
+import { useRouter } from "next/router";
 const landingPage = () => {
+  const router = useRouter();
   const [search, setSearch] = useState("");
   const handleInputChange = (e: any) => {
     setSearch(e.target.value);
   };
   console.log(search);
+  useEffect(() => {
+    // Get accessToken from sessionStorage
+    const accessToken = sessionStorage.getItem("accessToken");
 
+    // Check if accessToken exists
+    if (accessToken) {
+      // Redirect to home page
+      router.push("/Home");
+    }
+  }, []);
   return (
     <div>
       <Navbar name="UniGhana" text="login" />

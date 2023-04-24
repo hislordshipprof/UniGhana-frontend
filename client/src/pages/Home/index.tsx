@@ -27,7 +27,7 @@ const Home = () => {
             id="carouselExampleControls"
             className="carousel slide"
             data-bs-ride="carousel"
-            style={{ height: "450px" }}
+            style={{ height: "460px" }}
           >
             <div className="carousel-inner">
               <div className="carousel-item active">
@@ -35,6 +35,7 @@ const Home = () => {
                   src={images.legon}
                   className="d-block w-100"
                   alt="First Slide"
+                  style={{ height: "auto", width: "auto" }}
                 />
               </div>
               <div className="carousel-item">
@@ -42,6 +43,7 @@ const Home = () => {
                   src={images.upsa}
                   className="d-block w-100"
                   alt="Second Slide"
+                  style={{ height: "auto", width: "auto" }}
                 />
               </div>
               <div className="carousel-item">
@@ -49,6 +51,7 @@ const Home = () => {
                   src={images.knust}
                   className="d-block w-100"
                   alt="Third Slide"
+                  style={{ height: "auto", width: "auto" }}
                 />
               </div>
             </div>

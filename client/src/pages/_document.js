@@ -8,7 +8,7 @@ export default function Document() {
   return (
     <Html>
       <Head>
-        <link rel="icon" type='"image/gif/png"' href="/logo.ico" />
+        {/* <link rel="icon" type='"image/gif/png"' href="/logo.ico" /> */}
         <link
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"

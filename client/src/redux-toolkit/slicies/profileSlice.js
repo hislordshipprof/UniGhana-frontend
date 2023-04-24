@@ -4,8 +4,8 @@ const initialState = {
   user: {},
 };
 
-export const userProfile = createSlice({
-  name: "userProfile",
+export const profileSlice = createSlice({
+  name: "PROFILE",
   initialState,
   reducers: {
     setUserProfile: (state, action) => {
@@ -15,6 +15,6 @@ export const userProfile = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { setUserProfile } = userProfile.actions;
+export const { setUserProfile } = profileSlice.actions;
 
-export default userProfile.reducer;
+export default profileSlice.reducer;

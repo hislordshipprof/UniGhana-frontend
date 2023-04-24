@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import type { AppProps } from "next/app";
 import { Montserrat } from "next/font/google";
 import { Provider } from "react-redux";
-import { store } from "../redux/store/store";
+import { store } from "../redux-toolkit/store/store";
 // If loading a variable font, you don't need to specify the font weight
 const inter = Montserrat({ weight: "300", subsets: ["latin"] });
 export default function App({ Component, pageProps }: AppProps) {
@@ -18,7 +18,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <main className={inter.className}>
       <Head>
-        <title>{routeName === "" ? "Sweeft Shipping" : routeName}</title>
+        <title>{routeName === "" ? "UniGhana" : routeName}</title>
         <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />

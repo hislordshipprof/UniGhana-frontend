@@ -3,21 +3,110 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { images } from "../Global/Image";
 import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import { useRouter } from "next/router";
+import { setUserProfile } from "@/redux-toolkit/slicies/profileSlice";
 const SignUpContent = () => {
+  const { user } = useSelector((state: any) => state.prof);
+  const dispatch = useDispatch();
   const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [passwordConfirmError, setPasswordConfirmError] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [nameError, setNameError] = useState("");
+  const router = useRouter();
+  const handlePasswordChange = (event: any) => {
+    setPassword(event.target.value);
+    if (event.target.value) {
+      setPasswordError("");
+    }
+  };
+
+  const handleEmailChange = (event: any) => {
+    setEmail(event.target.value);
+    if (event.target.value) {
+      setEmailError("");
+    }
+  };
+  const handleNameChange = (event: any) => {
+    setName(event.target.value);
+    if (event.target.value) {
+      setNameError("");
+    }
+  };
+  const handlePasswordConfirmChange = (event: any) => {
+    setPasswordConfirm(event.target.value);
+    if (event.target.value) {
+      setPasswordConfirmError("");
+    }
+  };
+
+  const handlePasswordFocus = () => {
+    setPasswordError("");
+  };
+
+  const handleEmailFocus = () => {
+    setEmailError("");
+  };
+  const handleNameFocus = () => {
+    setNameError("");
+  };
+
+  const handlePasswordConfirmFocus = () => {
+    setPasswordConfirmError("");
+  };
 
   const handleSubmit = async (event: any) => {
     event.preventDefault(); // prevent default form submission behavior
 
+    let errors = false;
+
+    // validate input fields
+    if (!email) {
+      setEmailError("Please enter your email.");
+      errors = true;
+    }
+    if (!name) {
+      setNameError("Please enter your email.");
+      errors = true;
+    }
+    if (!password) {
+      setPasswordError("Please enter your password.");
+      errors = true;
+    }
+    if (!password) {
+      setPasswordConfirmError("Please enter your password.");
+      errors = true;
+    }
+
+    if (errors) {
+      return;
+    }
+
     try {
-      const response = await axios.post("/api/login", { name, email });
-      console.log(response.data); // log response data if successful
-      // redirect to Home page or do any other actions you need
+      setLoading(true);
+      const response = await axios.post(
+        "https://uinghana-gyw9.onrender.com/api/v1/auth/register",
+        { name, email, password, passwordConfirm }
+      );
+
+      if (response.status === 201) {
+        const { user } = response.data.data;
+        const { token } = response.data;
+
+        dispatch(setUserProfile(user));
+        sessionStorage.setItem("accessToken", token);
+        router.push("/Home");
+      }
     } catch (error) {
       console.error(error); // handle error
     }
   };
+
   return (
     <>
       <section className="heroSection mt-5 pt-5">
@@ -29,32 +118,65 @@ const SignUpContent = () => {
                   <span></span>
                   <span className="highlight">Sign Up</span>
                 </h1>
-
                 <form onSubmit={handleSubmit}>
                   <div className="form-floating my-5">
                     <input
-                      type="text"
+                      type="name"
                       className="form-control input"
                       id="name"
                       placeholder="Kirk Wolf"
                       value={name}
-                      onChange={(event) => setName(event.target.value)}
+                      onChange={handleNameChange}
+                      onFocus={handleNameFocus}
                     />
-                    <label htmlFor="name">Full name</label>
+                    <label htmlFor="name">name</label>
+                    {emailError && <p className="text-danger">{emailError}</p>}
                   </div>
-                  <div className="form-floating mb-5">
+                  <div className="form-floating my-5">
                     <input
                       type="email"
                       className="form-control input"
                       id="email"
-                      placeholder="name@example.com"
+                      placeholder="Kirk Wolf"
                       value={email}
-                      onChange={(event) => setEmail(event.target.value)}
+                      onChange={handleEmailChange}
+                      onFocus={handleEmailFocus}
                     />
-                    <label htmlFor="email">Email address</label>
+                    <label htmlFor="name">Email</label>
+                    {emailError && <p className="text-danger">{emailError}</p>}
+                  </div>
+                  <div className="form-floating mb-5">
+                    <input
+                      type="password"
+                      className="form-control input"
+                      id="password"
+                      placeholder="name@example.com"
+                      value={password}
+                      onChange={handlePasswordChange}
+                      onFocus={handlePasswordFocus}
+                    />
+                    <label htmlFor="email">Password</label>
+                    {passwordError && (
+                      <p className="text-danger">{passwordError}</p>
+                    )}
+                  </div>
+                  <div className="form-floating mb-5">
+                    <input
+                      type="passwordConfirm"
+                      className="form-control input"
+                      id="passwordConfirm"
+                      placeholder="name@example.com"
+                      value={passwordConfirm}
+                      onChange={handlePasswordConfirmChange}
+                      onFocus={handlePasswordConfirmFocus}
+                    />
+                    <label htmlFor="passwordConfirm">Password Confirm</label>
+                    {passwordError && (
+                      <p className="text-danger">{passwordConfirmError}</p>
+                    )}
                   </div>
                   <button type="submit" className="btn px-5">
-                    Login
+                    Sign Up
                   </button>
                 </form>
               </div>
