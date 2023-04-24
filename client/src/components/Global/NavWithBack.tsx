@@ -26,7 +26,7 @@ const NavWithBack = () => {
               </div>
               <div
                 className="profilePicture"
-                style={{ backgroundImage: `url(${user.avatar.src})` }}
+                style={{ backgroundImage: `url(${user.avatar})` }}
               ></div>
               {/* <div className="profilePicture" style="background-image: url(/Images/Profile.jpg);"></div> */}
             </div>
