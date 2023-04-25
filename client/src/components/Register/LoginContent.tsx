@@ -9,6 +9,7 @@ import { setUserProfile } from "@/redux-toolkit/slicies/profileSlice";
 const LoginContent = () => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
   const [passwordError, setPasswordError] = useState("");
   const [emailError, setEmailError] = useState("");
   const dispatch = useDispatch();
@@ -55,6 +56,7 @@ const LoginContent = () => {
     }
 
     try {
+      setLoading(true);
       const response = await axios.post(
         "https://uinghana-gyw9.onrender.com/api/v1/auth/login",
         { email, password }
@@ -62,7 +64,7 @@ const LoginContent = () => {
       if (response.status === 200) {
         const { user } = response.data.data;
         const { token } = response.data;
-
+        setLoading(false);
         dispatch(setUserProfile(user));
         sessionStorage.setItem("accessToken", token);
         router.push("/Home");
@@ -115,6 +117,11 @@ const LoginContent = () => {
                       <p className="text-danger">{passwordError}</p>
                     )}
                   </div>
+                  {loading && (
+                    <p style={{ fontSize: 18, color: "greeen" }}>
+                      Signing you in please wait .....
+                    </p>
+                  )}
                   <button type="submit" className="btn px-5">
                     Login
                   </button>

@@ -6,8 +6,9 @@ import { images } from "./Image";
 interface NavbarProps {
   name: string;
   text: string;
+  home: string;
 }
-const Navbar = ({ name, text }: NavbarProps) => {
+const Navbar = ({ name, text, home }: NavbarProps) => {
   return (
     <>
       <nav className="navbar navbar-expand-lg fixed-top">
@@ -37,6 +38,15 @@ const Navbar = ({ name, text }: NavbarProps) => {
                 <li className="nav-item">
                   <Link className=" btn px-3" href="/register/login">
                     {text}
+                  </Link>
+                </li>
+              )}
+            </ul>
+            <ul className="navbar-nav " style={{ marginLeft: 10 }}>
+              {home === "Home" && (
+                <li className="nav-item">
+                  <Link className=" btn px-3" href="/Home">
+                    {home}
                   </Link>
                 </li>
               )}

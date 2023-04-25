@@ -6,7 +6,7 @@ import Search from "../../../public/Images/search.png";
 import Time from "../../../public/Images/time.png";
 import Delivered from "../../../public/Images/delivered.png";
 import cap from "../../../public/Images/cap.jpg";
-import school from "../../../public/Images/school.png";
+import school from "../../../public/Images/sch.png";
 import techBg from "../../../public/Images/techBg.png";
 
 import logout from "../../../public/Images/logout.svg";

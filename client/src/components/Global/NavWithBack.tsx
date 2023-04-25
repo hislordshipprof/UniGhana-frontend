@@ -10,9 +10,9 @@ const NavWithBack = () => {
       <nav className="navbar navbar-expand-lg fixed-top">
         <div className="container align-items-center">
           <div className="d-flex align-items-center">
-            <a href="/register/Adminlogin">
+            {/* <a href="/register/Adminlogin">
               <Image src={images.logout} alt="" className="img-fluid" />
-            </a>
+            </a> */}
             <a href="/Home">
               <Image src={images.mainMenu} alt="" className="img-fluid mx-5" />
             </a>

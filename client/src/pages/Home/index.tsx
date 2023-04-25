@@ -1,10 +1,22 @@
 import { images } from "@/components/Global/Image";
 import NavWithBack from "@/components/Global/NavWithBack";
+import { data } from "@/utils/data";
+import { useDispatch } from "react-redux";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { setUpdateSchool } from "@/redux-toolkit/slicies/profileSlice";
+import { useRouter } from "next/router";
 
 const Home = () => {
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const [info, setData] = React.useState<any>(data);
+  const handleDetail = (id: any) => {
+    dispatch(setUpdateSchool(id));
+    router.push("/Home/details");
+  };
+
   return (
     <div>
       <NavWithBack />
@@ -27,15 +39,15 @@ const Home = () => {
             id="carouselExampleControls"
             className="carousel slide"
             data-bs-ride="carousel"
-            style={{ height: "460px" }}
+            // style={{ height: "460px" }}
           >
             <div className="carousel-inner">
               <div className="carousel-item active">
                 <Image
-                  src={images.legon}
+                  src={images.knust}
                   className="d-block w-100"
                   alt="First Slide"
-                  style={{ height: "auto", width: "auto" }}
+                  style={{ height: "450px", width: "auto" }}
                 />
               </div>
               <div className="carousel-item">
@@ -43,15 +55,15 @@ const Home = () => {
                   src={images.upsa}
                   className="d-block w-100"
                   alt="Second Slide"
-                  style={{ height: "auto", width: "auto" }}
+                  style={{ height: "450px", width: "auto" }}
                 />
               </div>
               <div className="carousel-item">
                 <Image
-                  src={images.knust}
+                  src={images.legon}
                   className="d-block w-100"
                   alt="Third Slide"
-                  style={{ height: "auto", width: "auto" }}
+                  style={{ height: "450px", width: "auto" }}
                 />
               </div>
             </div>
@@ -81,67 +93,31 @@ const Home = () => {
             </button>
           </div>
         </div>
-        <div className="row align-items-center justify-content-center my-5 mx-auto">
-          <div className="col-12 col-md-6 col-lg-4">
-            <div className="card h-100">
-              <Image
-                src={images.legon}
-                alt="Card Image"
-                className="card-img-top"
-              />
-              <div className="card-body">
-                <h5 className="card-title">Card Title</h5>
-                <p className="card-text">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Phasellus euismod fringilla tellus at suscipit. Ut sed
-                  sagittis tortor.
-                </p>
-                <a href="/details" className="btn btn-primary">
-                  View Details
-                </a>
+        <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 justify-content-center my-5 mx-auto">
+          {data.map((item) => (
+            <div key={item.id} className="col mb-4">
+              <div className="card h-100">
+                <Image
+                  src={item.imgFront}
+                  alt="Card Image"
+                  className="card-img-top"
+                  priority
+                  width={500}
+                  height={400}
+                />
+                <div className="card-body">
+                  <h5 className="card-title">{item.title}</h5>
+                  <p className="card-text">{item.description}</p>
+                  <button
+                    onClick={() => handleDetail(item)}
+                    className="btn btn-primary"
+                  >
+                    View Details
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="col-12 col-md-6 col-lg-4">
-            <div className="card h-100">
-              <Image
-                src={images.legon}
-                alt="Card Image"
-                className="card-img-top"
-              />
-              <div className="card-body">
-                <h5 className="card-title">Card Title</h5>
-                <p className="card-text">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Phasellus euismod fringilla tellus at suscipit. Ut sed
-                  sagittis tortor.
-                </p>
-                <a href="/details" className="btn btn-primary">
-                  View Details
-                </a>
-              </div>
-            </div>
-          </div>
-          <div className="col-12 col-md-6 col-lg-4">
-            <div className="card h-100">
-              <Image
-                src={images.legon}
-                alt="Card Image"
-                className="card-img-top"
-              />
-              <div className="card-body">
-                <h5 className="card-title">Card Title</h5>
-                <p className="card-text">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Phasellus euismod fringilla tellus at suscipit. Ut sed
-                  sagittis tortor.
-                </p>
-                <a href="/details" className="btn btn-primary">
-                  View Details
-                </a>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </section>
     </div>

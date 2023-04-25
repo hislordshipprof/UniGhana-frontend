@@ -6,12 +6,17 @@ import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import { setUserProfile } from "@/redux-toolkit/slicies/profileSlice";
+import { BiKey } from "react-icons/bi";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 const SignUpContent = () => {
   const { user } = useSelector((state: any) => state.prof);
   const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -19,6 +24,7 @@ const SignUpContent = () => {
   const [emailError, setEmailError] = useState("");
   const [nameError, setNameError] = useState("");
   const router = useRouter();
+  const [showPassword, setShowPassword] = useState(false);
   const handlePasswordChange = (event: any) => {
     setPassword(event.target.value);
     if (event.target.value) {
@@ -26,6 +32,10 @@ const SignUpContent = () => {
     }
   };
 
+  console.log(
+    "----data",
+    JSON.stringify({ name, email, password, passwordConfirm }, null, 2)
+  );
   const handleEmailChange = (event: any) => {
     setEmail(event.target.value);
     if (event.target.value) {
@@ -59,6 +69,9 @@ const SignUpContent = () => {
   const handlePasswordConfirmFocus = () => {
     setPasswordConfirmError("");
   };
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   const handleSubmit = async (event: any) => {
     event.preventDefault(); // prevent default form submission behavior
@@ -71,7 +84,7 @@ const SignUpContent = () => {
       errors = true;
     }
     if (!name) {
-      setNameError("Please enter your email.");
+      setNameError("Please enter your name.");
       errors = true;
     }
     if (!password) {
@@ -100,10 +113,12 @@ const SignUpContent = () => {
 
         dispatch(setUserProfile(user));
         sessionStorage.setItem("accessToken", token);
+        setLoading(false);
         router.push("/Home");
       }
-    } catch (error) {
-      console.error(error); // handle error
+    } catch (error: any) {
+      console.error("----", error.message);
+      setError(error.message);
     }
   };
 
@@ -130,7 +145,86 @@ const SignUpContent = () => {
                       onFocus={handleNameFocus}
                     />
                     <label htmlFor="name">name</label>
+                    {nameError && <p className="text-danger">{emailError}</p>}
+                  </div>
+                  <div className="form-floating my-5">
+                    <input
+                      type="email"
+                      className="form-control input"
+                      id="email"
+                      placeholder="Kirk Wolf"
+                      value={email}
+                      onChange={handleEmailChange}
+                      onFocus={handleEmailFocus}
+                    />
+                    <label htmlFor="name">Email</label>
                     {emailError && <p className="text-danger">{emailError}</p>}
+                  </div>
+                  <div className="form-floating mb-5">
+                    <input
+                      type={showPassword ? "text" : "password"}
+                      className="form-control input"
+                      id="password"
+                      placeholder="Password"
+                      value={password}
+                      onChange={handlePasswordChange}
+                      onFocus={handlePasswordFocus}
+                    />
+                    <label htmlFor="password">Password</label>
+                    <FontAwesomeIcon
+                      icon={showPassword ? faEyeSlash : faEye}
+                      onClick={togglePasswordVisibility}
+                      style={{ marginRight: "17px" }}
+                      className="password-toggle position-absolute top-50 end-0 translate-middle-y"
+                    />
+                    {passwordError && (
+                      <p className="text-danger">{passwordConfirmError}</p>
+                    )}
+                  </div>
+                  <div className="form-floating mb-5">
+                    <input
+                      type={showPassword ? "text" : "password"}
+                      className="form-control input"
+                      id="passwordConfirm"
+                      placeholder="Confirm Password"
+                      value={passwordConfirm}
+                      onChange={handlePasswordConfirmChange}
+                      onFocus={handlePasswordConfirmFocus}
+                    />
+
+                    <label htmlFor="passwordConfirm">Confirm Password</label>
+                    <FontAwesomeIcon
+                      icon={showPassword ? faEyeSlash : faEye}
+                      onClick={togglePasswordVisibility}
+                      style={{ marginRight: "17px" }}
+                      className="password-toggle position-absolute top-50 end-0 translate-middle-y"
+                    />
+                    {passwordError && (
+                      <p className="text-danger">{passwordConfirmError}</p>
+                    )}
+                  </div>
+                  {loading && (
+                    <p style={{ fontSize: 18, color: "greeen" }}>
+                      Registering you in please wait .....
+                    </p>
+                  )}
+                  <button type="submit" className="btn btn-primary">
+                    Submit
+                  </button>
+                </form>
+                {/* <form onSubmit={handleSubmit}>
+                  <div className="form-floating my-5">
+                    <input
+                      type="name"
+                      className="form-control input"
+                      id="name"
+                      placeholder="Kirk Wolf"
+                      value={name}
+                      onChange={handleNameChange}
+                      onFocus={handleNameFocus}
+                    />
+                    <label htmlFor="name">name</label>
+                    {nameError && <p className="text-danger">{emailError}</p>}
                   </div>
                   <div className="form-floating my-5">
                     <input
@@ -178,7 +272,8 @@ const SignUpContent = () => {
                   <button type="submit" className="btn px-5">
                     Sign Up
                   </button>
-                </form>
+                </form> */}
+                <p style={{ color: "red" }}>{error}</p>
               </div>
               <div style={{ marginBottom: 20 }} className="col-lg-6 imgSection">
                 <Image

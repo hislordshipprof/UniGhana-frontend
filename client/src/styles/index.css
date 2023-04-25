@@ -12,7 +12,23 @@
 a {
   text-decoration: none !important;
 }
-
+@media (max-width: 768px) {
+  .allDetails {
+    margin-top: 0;
+    padding-top: 3rem;
+  }
+}
+.section {
+  margin-bottom: 50px;
+}
+.password-toggle {
+  margin-left: 15px;
+}
+.card-img-top {
+  max-height: 290px; /* set your desired maximum height here */
+  object-fit: cover; /* ensures the image fills the container */
+  object-position: center; /* centers the image within the container */
+}
 .success {
   color: #127D10;
   font-weight: 400;

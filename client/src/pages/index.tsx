@@ -17,14 +17,14 @@ const landingPage = () => {
     const accessToken = sessionStorage.getItem("accessToken");
 
     // Check if accessToken exists
-    if (accessToken) {
+    if (!accessToken) {
       // Redirect to home page
       router.push("/Home");
     }
   }, []);
   return (
     <div>
-      <Navbar name="UniGhana" text="login" />
+      <Navbar name="UniGhana" text="login" home="Home" />
 
       <section className="heroSection mt-5 pt-5">
         <div className="hero container mt-5">
@@ -60,7 +60,12 @@ const landingPage = () => {
                   priority
                   alt=""
                   className="img-fluid"
-                  style={{ bottom: 20, borderRadius: 30 }}
+                  style={{
+                    objectFit: "cover",
+                    width: "100%",
+                    height: "100%",
+                    borderRadius: 30,
+                  }}
                 />
               </div>
             </div>
