@@ -93,16 +93,16 @@ const details = () => {
               </thead>
               <tbody>
                 <tr>
-                  <td>Subject 1</td>
-                  <td>90</td>
+                  <td>Social Science</td>
+                  <td>12</td>
                 </tr>
                 <tr>
-                  <td>Subject 2</td>
-                  <td>85</td>
+                  <td>Medicine</td>
+                  <td>06</td>
                 </tr>
                 <tr>
-                  <td>Subject 3</td>
-                  <td>80</td>
+                  <td>Engineering</td>
+                  <td>08</td>
                 </tr>
               </tbody>
             </table>
