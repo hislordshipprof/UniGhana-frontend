@@ -12,16 +12,16 @@ const landingPage = () => {
     setSearch(e.target.value);
   };
   console.log(search);
-  useEffect(() => {
-    // Get accessToken from sessionStorage
-    const accessToken = sessionStorage.getItem("accessToken");
+  // useEffect(() => {
+  //   // Get accessToken from sessionStorage
+  //   const accessToken = sessionStorage.getItem("accessToken");
 
-    // Check if accessToken exists
-    if (!accessToken) {
-      // Redirect to home page
-      router.push("/Home");
-    }
-  }, []);
+  //   // Check if accessToken exists
+  //   if (!accessToken) {
+  //     // Redirect to home page
+  //     router.push("/Home");
+  //   }
+  // }, []);
   return (
     <div>
       <Navbar name="UniGhana" text="login" home="Home" />
