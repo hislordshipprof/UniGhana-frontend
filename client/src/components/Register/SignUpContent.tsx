@@ -6,9 +6,9 @@ import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import { setUserProfile } from "@/redux-toolkit/slicies/profileSlice";
-import { BiKey } from "react-icons/bi";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 const SignUpContent = () => {
   const { user } = useSelector((state: any) => state.prof);
@@ -170,18 +170,23 @@ const SignUpContent = () => {
                       onChange={handlePasswordChange}
                       onFocus={handlePasswordFocus}
                     />
+
                     <label htmlFor="password">Password</label>
-                    <FontAwesomeIcon
-                      icon={showPassword ? faEyeSlash : faEye}
+                    <span
+                      className="input-group-text position-absolute end-0 top-50 translate-middle-y"
                       onClick={togglePasswordVisibility}
-                      style={{ marginRight: "17px" }}
-                      className="password-toggle position-absolute top-50 end-0 translate-middle-y"
-                    />
-                    {passwordError && (
-                      <p className="text-danger">{passwordConfirmError}</p>
-                    )}
+                      style={{
+                        cursor: "pointer",
+                        margin: "0 10px",
+                        backgroundColor: "transparent",
+                        border: "none",
+                      }}
+                    >
+                      {showPassword ? <AiFillEye /> : <AiFillEyeInvisible />}
+                    </span>
+                    {passwordError && <p className="text-danger">{password}</p>}
                   </div>
-                  <div className="form-floating mb-5">
+                  <div className="form-floating mb-5 position-relative">
                     <input
                       type={showPassword ? "text" : "password"}
                       className="form-control input"
@@ -191,14 +196,19 @@ const SignUpContent = () => {
                       onChange={handlePasswordConfirmChange}
                       onFocus={handlePasswordConfirmFocus}
                     />
-
                     <label htmlFor="passwordConfirm">Confirm Password</label>
-                    <FontAwesomeIcon
-                      icon={showPassword ? faEyeSlash : faEye}
+                    <span
+                      className="input-group-text position-absolute end-0 top-50 translate-middle-y"
                       onClick={togglePasswordVisibility}
-                      style={{ marginRight: "17px" }}
-                      className="password-toggle position-absolute top-50 end-0 translate-middle-y"
-                    />
+                      style={{
+                        cursor: "pointer",
+                        margin: "0 10px",
+                        backgroundColor: "transparent",
+                        border: "none",
+                      }}
+                    >
+                      {showPassword ? <AiFillEye /> : <AiFillEyeInvisible />}
+                    </span>
                     {passwordError && (
                       <p className="text-danger">{passwordConfirmError}</p>
                     )}
@@ -282,6 +292,7 @@ const SignUpContent = () => {
                   className="img-fluid"
                   style={{ borderRadius: 30 }}
                 />
+                
               </div>
             </div>
           </div>

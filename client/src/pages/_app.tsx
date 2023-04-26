@@ -6,7 +6,9 @@ import { useRouter } from "next/router";
 import type { AppProps } from "next/app";
 import { Montserrat } from "next/font/google";
 import { Provider } from "react-redux";
-import { store } from "../redux-toolkit/store/store";
+import { store, persistor } from "../redux-toolkit/store/store";
+import { PersistGate } from "redux-persist/integration/react";
+
 // If loading a variable font, you don't need to specify the font weight
 const inter = Montserrat({ weight: "300", subsets: ["latin"] });
 export default function App({ Component, pageProps }: AppProps) {
@@ -25,7 +27,9 @@ export default function App({ Component, pageProps }: AppProps) {
       </Head>
 
       <Provider store={store}>
-        <Component {...pageProps} />
+        <PersistGate loading={null} persistor={persistor}>
+          <Component {...pageProps} />
+        </PersistGate>
       </Provider>
 
       <Script

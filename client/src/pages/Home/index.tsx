@@ -24,7 +24,14 @@ const Home = () => {
         <div className=" container mt-5" style={{ overflow: "hidden" }}>
           <div>
             <h4 style={{ fontWeight: "300", color: "#022873" }}>
-              Welcome to <span className="highlight"> UniGhana,</span>
+              Welcome to
+              <span
+                className="highlight"
+                style={{ color: " #F28705", fontWeight: "bold" }}
+              >
+                {" "}
+                UniGhana,
+              </span>
             </h4>
             <p>
               Explore the contents from the various universities in the country,
@@ -94,7 +101,7 @@ const Home = () => {
           </div>
         </div>
         <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 justify-content-center my-5 mx-auto">
-          {data.map((item) => (
+          {info.map((item: any) => (
             <div key={item.id} className="col mb-4">
               <div className="card h-100">
                 <Image
@@ -106,7 +113,7 @@ const Home = () => {
                   height={400}
                 />
                 <div className="card-body">
-                  <h5 className="card-title">{item.title}</h5>
+                  <h4 className="card-title">{item.title}</h4>
                   <p className="card-text">{item.description}</p>
                   <button
                     onClick={() => handleDetail(item)}

@@ -32,7 +32,7 @@ const landingPage = () => {
             <div className="row align-items-center g-5">
               <div className="col-lg-6 textSection">
                 <h1 className="heroText">
-                  Welcom to <br></br>
+                  Welcome to <br></br>
                   <span style={{ color: "#F28705" }}>UniGhana </span>
                   <span style={{ color: "#022873", margin: 7 }}>
                     A Tertiary School Platform
@@ -55,18 +55,35 @@ const landingPage = () => {
                 </Link>
               </div>
               <div className="col-lg-6 imgSection">
-                <Image
-                  src={images.school}
-                  priority
-                  alt=""
-                  className="img-fluid"
-                  style={{
-                    objectFit: "cover",
-                    width: "100%",
-                    height: "100%",
-                    borderRadius: 30,
-                  }}
-                />
+                <div style={{ borderRadius: 30 }}>
+                  <Image
+                    src={images.school}
+                    priority
+                    alt=""
+                    className="img-fluid"
+                    style={{
+                      objectFit: "cover",
+                      width: "100%",
+                      height: "100%",
+                      borderTopRightRadius: 30,
+                      borderTopLeftRadius: 30,
+                    }}
+                  />
+                  <Image
+                    src={images.schol}
+                    priority
+                    alt=""
+                    className="img-fluid"
+                    style={{
+                      objectFit: "cover",
+                      width: "100%",
+                      height: "100%",
+                      borderBottomLeftRadius: 30,
+                      borderBottomRightRadius: 30,
+                      // borderRadius: 30,
+                    }}
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -91,7 +108,7 @@ const landingPage = () => {
               />
               <div className="factDetails mx-3">
                 <h2 className="factTitle ">60+</h2>
-                <p className="factMeaning">Univercities Available </p>
+                <p className="factMeaning">Universities Available </p>
               </div>
             </div>
           </div>

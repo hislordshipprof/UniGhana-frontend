@@ -5,6 +5,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { images } from "../Global/Image";
 import axios from "axios";
 import { useRouter } from "next/router";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+
 import { setUserProfile } from "@/redux-toolkit/slicies/profileSlice";
 const LoginContent = () => {
   const [password, setPassword] = useState("");
@@ -13,12 +15,17 @@ const LoginContent = () => {
   const [passwordError, setPasswordError] = useState("");
   const [emailError, setEmailError] = useState("");
   const dispatch = useDispatch();
+  const [showPassword, setShowPassword] = useState(false);
+
   const router = useRouter();
   const handlePasswordChange = (event: any) => {
     setPassword(event.target.value);
     if (event.target.value) {
       setPasswordError("");
     }
+  };
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
 
   const handleEmailChange = (event: any) => {
@@ -104,18 +111,29 @@ const LoginContent = () => {
                   </div>
                   <div className="form-floating mb-5">
                     <input
-                      type="password"
+                      type={showPassword ? "text" : "password"}
                       className="form-control input"
                       id="password"
-                      placeholder="name@example.com"
+                      placeholder="Password"
                       value={password}
                       onChange={handlePasswordChange}
                       onFocus={handlePasswordFocus}
                     />
-                    <label htmlFor="email">Password</label>
-                    {passwordError && (
-                      <p className="text-danger">{passwordError}</p>
-                    )}
+
+                    <label htmlFor="password">Password</label>
+                    <span
+                      className="input-group-text position-absolute end-0 top-50 translate-middle-y"
+                      onClick={togglePasswordVisibility}
+                      style={{
+                        cursor: "pointer",
+                        margin: "0 10px",
+                        backgroundColor: "transparent",
+                        border: "none",
+                      }}
+                    >
+                      {showPassword ? <AiFillEye /> : <AiFillEyeInvisible />}
+                    </span>
+                    {passwordError && <p className="text-danger">{password}</p>}
                   </div>
                   {loading && (
                     <p style={{ fontSize: 18, color: "greeen" }}>

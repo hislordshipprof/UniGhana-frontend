@@ -1,6 +1,7 @@
 import { images } from "@/components/Global/Image";
 import Navbar from "@/components/Global/Navbar";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 import { useSelector } from "react-redux";
 const details = () => {
@@ -63,6 +64,13 @@ const details = () => {
                     <div className="card-body">
                       <h5 className="card-title">{college?.name}</h5>
                       <p className="card-text">{college?.description}</p>
+                      <a
+                        href={college.more}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <button className="btn btn-primary">Learn More</button>
+                      </a>
                     </div>
                   </div>
                 </div>
