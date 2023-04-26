@@ -4,7 +4,7 @@ import { images } from "./Image";
 import { useSelector } from "react-redux";
 const NavWithBack = () => {
   const { user } = useSelector((state: any) => state.prof);
-
+  console.log("user", user);
   return (
     <>
       <nav className="navbar navbar-expand-lg fixed-top">

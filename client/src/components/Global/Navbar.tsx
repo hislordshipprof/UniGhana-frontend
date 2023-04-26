@@ -30,22 +30,20 @@ const Navbar = ({ name, text, home }: NavbarProps) => {
             <Image src={images.Menu} alt="" className="img-fluid" />
           </button>
           <div
-            className="collapse navbar-collapse py-4 justify-content-end"
+            className="collapse navbar-collapse py-3 justify-content-end"
             id="navbarNavDropdown"
           >
-            <ul className="navbar-nav ">
+            <ul className="navbar-nav">
               {text === "login" && (
-                <li className="nav-item">
-                  <Link className=" btn px-3" href="/register/login">
+                <li className="nav-item mb-2 mx-2 mb-lg-0">
+                  <Link className="btn px-3" href="/register/login">
                     {text}
                   </Link>
                 </li>
               )}
-            </ul>
-            <ul className="navbar-nav " style={{ marginLeft: 10 }}>
               {home === "Home" && (
                 <li className="nav-item">
-                  <Link className=" btn px-3" href="/Home">
+                  <Link className="btn px-2.4" href="/Home">
                     {home}
                   </Link>
                 </li>

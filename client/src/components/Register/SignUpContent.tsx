@@ -215,74 +215,14 @@ const SignUpContent = () => {
                   </div>
                   {loading && (
                     <p style={{ fontSize: 18, color: "greeen" }}>
-                      Registering you in please wait .....
+                      Registering user please wait...
                     </p>
                   )}
                   <button type="submit" className="btn btn-primary">
                     Submit
                   </button>
                 </form>
-                {/* <form onSubmit={handleSubmit}>
-                  <div className="form-floating my-5">
-                    <input
-                      type="name"
-                      className="form-control input"
-                      id="name"
-                      placeholder="Kirk Wolf"
-                      value={name}
-                      onChange={handleNameChange}
-                      onFocus={handleNameFocus}
-                    />
-                    <label htmlFor="name">name</label>
-                    {nameError && <p className="text-danger">{emailError}</p>}
-                  </div>
-                  <div className="form-floating my-5">
-                    <input
-                      type="email"
-                      className="form-control input"
-                      id="email"
-                      placeholder="Kirk Wolf"
-                      value={email}
-                      onChange={handleEmailChange}
-                      onFocus={handleEmailFocus}
-                    />
-                    <label htmlFor="name">Email</label>
-                    {emailError && <p className="text-danger">{emailError}</p>}
-                  </div>
-                  <div className="form-floating mb-5">
-                    <input
-                      type="password"
-                      className="form-control input"
-                      id="password"
-                      placeholder="name@example.com"
-                      value={password}
-                      onChange={handlePasswordChange}
-                      onFocus={handlePasswordFocus}
-                    />
-                    <label htmlFor="email">Password</label>
-                    {passwordError && (
-                      <p className="text-danger">{passwordError}</p>
-                    )}
-                  </div>
-                  <div className="form-floating mb-5">
-                    <input
-                      type="passwordConfirm"
-                      className="form-control input"
-                      id="passwordConfirm"
-                      placeholder="name@example.com"
-                      value={passwordConfirm}
-                      onChange={handlePasswordConfirmChange}
-                      onFocus={handlePasswordConfirmFocus}
-                    />
-                    <label htmlFor="passwordConfirm">Password Confirm</label>
-                    {passwordError && (
-                      <p className="text-danger">{passwordConfirmError}</p>
-                    )}
-                  </div>
-                  <button type="submit" className="btn px-5">
-                    Sign Up
-                  </button>
-                </form> */}
+
                 <p style={{ color: "red" }}>{error}</p>
               </div>
               <div style={{ marginBottom: 20 }} className="col-lg-6 imgSection">
@@ -292,7 +232,6 @@ const SignUpContent = () => {
                   className="img-fluid"
                   style={{ borderRadius: 30 }}
                 />
-                
               </div>
             </div>
           </div>

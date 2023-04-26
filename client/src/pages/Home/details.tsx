@@ -1,4 +1,5 @@
 import { images } from "@/components/Global/Image";
+import NavWithBack from "@/components/Global/NavWithBack";
 import Navbar from "@/components/Global/Navbar";
 import Image from "next/image";
 import Link from "next/link";
@@ -18,7 +19,8 @@ const details = () => {
           backgroundImage: `url(${school.imageBg})`,
         }}
       >
-        <Navbar home="" name={school.title} text="" />
+        {/* <Navbar home="" name={school.title} text="" /> */}
+        <NavWithBack />
       </header>
       <main className=" bg-light ">
         <section id="history" className="section bg-light ">
